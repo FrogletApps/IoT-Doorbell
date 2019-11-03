@@ -1,5 +1,6 @@
 #From ukbaz.github.io/howto/ubit_workshop.html
 
+import time
 from bluezero import microbit
 ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          device_addr='E6:51:A6:1A:37:5B',
