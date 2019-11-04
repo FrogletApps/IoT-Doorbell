@@ -21,19 +21,42 @@ ledX = [
     0b01010,
     0b10001]
 
+#Currently used as Bluetooth connected icon
 ledHappyFace = [
+    0b00000,
     0b01010,
-    0b01010,
-    0b00100,
+    0b00000,
     0b10001,
-    0b11111]
+    0b01110]
 
+#Currently used as Bluetooth disconnected icon
 ledSadFace = [
+    0b00000,
     0b01010,
-    0b01010,
-    0b00100,
-    0b11111,
+    0b00000,
+    0b01110,
     0b10001]
+
+ledBellLeft = [
+    0b00100,
+    0b01100,
+    0b11100,
+    0b01100,
+    0b10100]
+
+ledBellCentre = [
+    0b00100,
+    0b01110,
+    0b01110,
+    0b11111,
+    0b00100]
+
+ledBellRight = [
+    0b00100,
+    0b01110,
+    0b00111,
+    0b00110,
+    0b00101]
 
 
 
