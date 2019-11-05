@@ -1,8 +1,8 @@
 import time
 from bluezero import microbit
 
-ubit = microbit.Microbit(adapter_addr='xx:xx:xx:xx:xx:xx',
-                         device_addr='yy:yy:yy:yy:yy:yy',
+ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
+                         device_addr='E6:51:A6:1A:37:5B',
                          accelerometer_service=True,
                          button_service=True,
                          led_service=True,
