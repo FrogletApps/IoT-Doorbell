@@ -9,12 +9,12 @@ sense = SenseHat()
 
 ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          device_addr='E6:51:A6:1A:37:5B',
-                         accelerometer_service=True,
+                         accelerometer_service=False,
                          button_service=True,
                          led_service=True,
                          magnetometer_service=False,
                          pin_service=False,
-                         temperature_service=True)
+                         temperature_service=False)
 
 looping = True
 
@@ -114,15 +114,11 @@ while looping:
         time.sleep(1)
 
     if mode == 1:
-        x, y, z = ubit.accelerometer
-        if z < 0:
-            print('Face up')
-        else:
-            print('Face down')
-        time.sleep(0.5)
+        print('A Pressed')
+        time.sleep(0.5)*/
     elif mode == 2:
-        print('Temperature:', ubit.temperature)
-        time.sleep(0.5)
+        print('B Pressed')
+        time.sleep(0.5)*/
     elif mode == 3:
         looping = False
         print('Exiting')
