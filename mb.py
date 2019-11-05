@@ -115,10 +115,10 @@ while looping:
 
     if mode == 1:
         print('A Pressed')
-        time.sleep(0.5)*/
+        time.sleep(0.5)
     elif mode == 2:
         print('B Pressed')
-        time.sleep(0.5)*/
+        time.sleep(0.5)
     elif mode == 3:
         looping = False
         print('Exiting')
