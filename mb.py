@@ -1,5 +1,3 @@
-#From ukbaz.github.io/howto/ubit_workshop.html
-
 import time
 from bluezero import microbit
 from sense_hat import SenseHat
