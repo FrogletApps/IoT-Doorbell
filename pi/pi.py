@@ -9,12 +9,25 @@ import requests
 
 sense = SenseHat()
 
-#Need to add this string before message text
-preMessage = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendMessage?chat_id=' + secret.tgChatID() + '&parse_mode=Markdown&text='
+picturePath = '/home/pi/image.jpg'
 
-#A function for sending notifications
+#Need to add this string before message text
+mPart1 = 'https://api.telegram.org/bot'+ secret.tgBotKey() +'/'
+chatID = '?chat_id=' + secret.tgChatID()
+
+#A function for sending notifications over Telegram
 def sendNotification(message):
-    requests.get(preMessage + message)
+    #response = 
+    requests.get(mPart1 + 'sendMessage' + chatID + '&parse_mode=Markdown&text=' + message)
+    #print (response.json())
+
+#A function for sending pictures over Telegram
+def sendPicture(picture):
+    url = mPart1 + "/sendPhoto"
+    files = {'photo': open(picturePath, 'rb')}
+    data = {'chat_id' : secret.tgChatID()}
+    response = requests.post(url, files=files, data=data)
+    print (response.json())
 
 ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          device_addr='E6:51:A6:1A:37:5B',
@@ -126,7 +139,7 @@ sense.set_pixels(piSadFace)
 ubit.connect()
 sense.set_pixels(piHappyFace)
 sendNotification("I'm connected up and ready to go!")
-print('Connected... Press a button to select mode')
+print("I'm connected up and ready to go!")
 
 while looping:
     if ubit.button_a > 0 and ubit.button_b > 0:
@@ -135,19 +148,23 @@ while looping:
         mode = 1
         ubit.pixels = mbTick
         sense.set_pixels(piTick)
-        print('A button was pressed')
+        print("There's someone at the door!")
         sendNotification("There's someone at the door!")
 
         camera = PiCamera()
         camera.start_preview()
         time.sleep(1)
-        camera.capture('/home/pi/image.jpg')
+        camera.capture(picturePath)
         camera.stop_preview()
-        photo = open('/home/pi/image.jpg', 'rb')
+        picture = open(picturePath, 'rb')
+        #Close the camera
         camera.close()
+
+        sendPicture(picture)
 
         #Wait for 2 seconds
         time.sleep(2)
+
         #Go back to waiting state
         ubit.pixels = mbHappyFace
         sense.set_pixels(piHappyFace)
