@@ -26,8 +26,9 @@ def sendPicture(picture):
     url = mPart1 + "sendPhoto"
     files = {'photo': open(picturePath, 'rb')}
     data = {'chat_id' : secret.tgChatID()}
-    response = requests.post(url, files=files, data=data)
-    print (response.json())
+    #response = 
+    requests.post(url, files=files, data=data)
+    #print (response.json())
 
 ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          device_addr='E6:51:A6:1A:37:5B',
@@ -152,10 +153,10 @@ while looping:
         sendNotification("There's someone at the door!")
 
         camera = PiCamera()
-        camera.start_preview()
-        time.sleep(1)
+        #camera.start_preview()
+        #time.sleep(1)
         camera.capture(picturePath)
-        camera.stop_preview()
+        #camera.stop_preview()
         picture = open(picturePath, 'rb')
         #Close the camera
         camera.close()
