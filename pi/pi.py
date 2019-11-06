@@ -12,7 +12,7 @@ sense = SenseHat()
 picturePath = '/home/pi/image.jpg'
 
 #Need to add this string before message text
-mPart1 = 'https://api.telegram.org/bot'+ secret.tgBotKey() +'/'
+mPart1 = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/'
 chatID = '?chat_id=' + secret.tgChatID()
 
 #A function for sending notifications over Telegram
@@ -23,7 +23,7 @@ def sendNotification(message):
 
 #A function for sending pictures over Telegram
 def sendPicture(picture):
-    url = mPart1 + "/sendPhoto"
+    url = mPart1 + "sendPhoto"
     files = {'photo': open(picturePath, 'rb')}
     data = {'chat_id' : secret.tgChatID()}
     response = requests.post(url, files=files, data=data)
