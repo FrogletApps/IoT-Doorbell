@@ -51,6 +51,13 @@ mbSadFace = [
     0b01110,
     0b10001]
 
+mbTick = [
+    0b00001,
+    0b01010,
+    0b10100,
+    0b01000,
+    0b00001]
+
 mbBellLeft = [
     0b00100,
     0b01100,
@@ -73,14 +80,18 @@ mbBellRight = [
     0b00101]
 
 #Sense HAT display arrays
-B = [0,0,255]  #Blue - use this for Bluetooth related stuff
+#255 is the max value but this is very bright!
+R = [120,0,0]  #Red
+G = [0,120,0]  #Green
+B = [0,0,120]  #Blue - use this for Bluetooth related stuff
 N = [0,0,0]    #Off
+
 
 #Currently used as Bluetooth connected icon
 piHappyFace = [
 N,N,N,N,N,N,N,N,
-N,B,B,N,N,B,B,N,
-N,B,B,N,N,B,B,N,
+N,N,N,N,N,N,N,N,
+N,N,B,N,N,B,N,N,
 N,N,N,N,N,N,N,N,
 N,N,N,N,N,N,N,N,
 N,B,N,N,N,N,B,N,
@@ -91,12 +102,23 @@ N,N,N,N,N,N,N,N
 #Currently used as Bluetooth disconnected icon
 piSadFace = [
 N,N,N,N,N,N,N,N,
-N,B,B,N,N,B,B,N,
-N,B,B,N,N,B,B,N,
+N,N,N,N,N,N,N,N,
+N,N,B,N,N,B,N,N,
 N,N,N,N,N,N,N,N,
 N,N,N,N,N,N,N,N,
 N,N,B,B,B,B,N,N,
 N,B,N,N,N,N,B,N,
+N,N,N,N,N,N,N,N
+]
+
+piTick = [
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,G,G,N,
+N,N,N,N,G,G,N,N,
+N,G,N,G,G,N,N,N,
+N,G,G,G,N,N,N,N,
+N,N,G,N,N,N,N,N,
 N,N,N,N,N,N,N,N
 ]
 
@@ -106,32 +128,18 @@ sense.set_pixels(piHappyFace)
 sendNotification("I'm connected up and ready to go!")
 print('Connected... Press a button to select mode')
 
-mode = 0
 while looping:
     if ubit.button_a > 0 and ubit.button_b > 0:
-        mode = 3
-        ubit.pixels = mbX
-        time.sleep(1)
-    elif ubit.button_b > 0:
-        mode = 2
-        ubit.pixels = mbSadFace
-        sense.set_pixels(piSadFace)
-        time.sleep(1)
-    elif ubit.button_a > 0:
-        mode = 1
-        ubit.pixels = mbHappyFace
-        sense.set_pixels(piHappyFace)
-        time.sleep(1)
-
-    if mode == 1:
-        print('A Pressed')
-        time.sleep(0.5)
-    elif mode == 2:
-        print('B Pressed')
-        time.sleep(0.5)
-    elif mode == 3:
         looping = False
-        print('Exiting')
+    elif ubit.button_a > 0 or ubit.button_b > 0:
+        mode = 1
+        ubit.pixels = mbTick
+        sense.set_pixels(piTick)
+        print('A button was pressed')
+        time.sleep(2)
+
+    ubit.pixels = mbHappyFace
+    sense.set_pixels(piHappyFace)
 
 ubit.disconnect()
 sense.clear()
