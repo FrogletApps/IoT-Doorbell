@@ -25,6 +25,6 @@ time.sleep(2)
 camera.close()
 
 send_picture = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendPhoto?chat_id=' + secret.tgChatID()# + 'attach://' + picture
-response = requests.get(send_picture, picture=picture)
+response = requests.post(send_picture, picture=picture)
 
 print (response.json())
