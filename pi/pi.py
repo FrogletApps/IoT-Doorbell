@@ -53,10 +53,10 @@ mbSadFace = [
 
 mbTick = [
     0b00001,
-    0b01010,
+    0b00010,
     0b10100,
     0b01000,
-    0b00001]
+    0b00000]
 
 mbBellLeft = [
     0b00100,
@@ -136,6 +136,7 @@ while looping:
         ubit.pixels = mbTick
         sense.set_pixels(piTick)
         print('A button was pressed')
+        sendNotification("There's someone at the door!")
         time.sleep(2)
 
     ubit.pixels = mbHappyFace
