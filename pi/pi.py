@@ -137,10 +137,12 @@ while looping:
         sense.set_pixels(piTick)
         print('A button was pressed')
         sendNotification("There's someone at the door!")
-        time.sleep(2)
 
-    ubit.pixels = mbHappyFace
-    sense.set_pixels(piHappyFace)
+        #Wait for 2 seconds
+        time.sleep(2)
+        #Go back to waiting state
+        ubit.pixels = mbHappyFace
+        sense.set_pixels(piHappyFace)
 
 ubit.disconnect()
 sense.clear()
