@@ -1,6 +1,4 @@
-from pushbullet.pushbullet import Pushbullet
 import secret
-    
-pb = Pushbullet(secret.apiKey)
+import os
 
-pb.bullet_link(title="Hello World", body="https://www.google.com")
+os.system('curl -u' + secret.apiKey + ': https://api.pushbullet.com/v2/pushes -d type=link -d title="There\'s someone at the door" -d url="https://www.google.com"')
