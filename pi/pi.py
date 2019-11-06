@@ -144,6 +144,7 @@ while looping:
         camera.capture('/home/pi/image.jpg')
         camera.stop_preview()
         photo = open('/home/pi/image.jpg', 'rb')
+        camera.close()
 
         #Wait for 2 seconds
         time.sleep(2)
