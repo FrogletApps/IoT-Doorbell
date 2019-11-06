@@ -6,7 +6,7 @@ import requests
 #send_text = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendMessage?chat_id=' + secret.tgChatID() + '&parse_mode=Markdown&text=' + bot_message
 #response = requests.get(send_text)
 
-send_picture = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendPhoto?chat_id=' + secret.tgChatID() + '/home/pi/image.jpg'
+send_picture = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendPhoto?chat_id=' + secret.tgChatID() + 'attach:///home/pi/image.jpg'
 response = requests.get(send_picture)
 
 print (response.json())
