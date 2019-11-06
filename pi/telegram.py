@@ -16,7 +16,7 @@ time.sleep(1)
 camera.capture(picturePath)
 camera.stop_preview()
 #picture = open(picturePath, 'rb')
-picture = {'file':open(picturePath, 'rb')}
+picture = open(picturePath, 'rb')
 camera.close()
 
 #Wait for 2 seconds
