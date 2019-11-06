@@ -3,7 +3,18 @@ from bluezero import microbit
 from sense_hat import SenseHat
 from picamera import PiCamera
 
+import secret
+import os
+import requests
+
 sense = SenseHat()
+
+#Need to add this string before message text
+preMessage = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendMessage?chat_id=' + secret.tgChatID() + '&parse_mode=Markdown&text='
+
+#A function for sending notifications
+def sendNotification(message):
+    requests.get(preMessage + message)
 
 ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          device_addr='E6:51:A6:1A:37:5B',
@@ -92,6 +103,7 @@ N,N,N,N,N,N,N,N
 sense.set_pixels(piSadFace)
 ubit.connect()
 sense.set_pixels(piHappyFace)
+sendNotification("I'm connected up and ready to go!")
 print('Connected... Press a button to select mode')
 
 mode = 0
