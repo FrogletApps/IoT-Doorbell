@@ -7,4 +7,4 @@ send_text = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/sendMessage?c
 
 response = requests.get(send_text)
 
-print response.json()
+print (response.json())
