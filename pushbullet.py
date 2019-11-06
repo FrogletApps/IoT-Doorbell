@@ -1,7 +1,6 @@
-from pushbullet import Pushbullet
+from pushbullet.pushbullet import Pushbullet
 import secret
     
 pb = Pushbullet(secret.apiKey)
 
-push = pb.push_link("Cool site", "https://www.google.com")
-
+pb.bullet_link(title="Hello World", body="https://www.google.com")
