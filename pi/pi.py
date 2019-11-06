@@ -139,13 +139,11 @@ while looping:
         sendNotification("There's someone at the door!")
 
         camera = PiCamera()
-	    camera.start_preview()
-	    time.sleep(1)
-	    camera.capture('/home/pi/image.jpg')
-	    camera.stop_preview()
-	
-	    photo = open('/home/pi/image.jpg', 'rb')
-	   
+        camera.start_preview()
+        time.sleep(1)
+        camera.capture('/home/pi/image.jpg')
+        camera.stop_preview()
+        photo = open('/home/pi/image.jpg', 'rb')
 
         #Wait for 2 seconds
         time.sleep(2)
