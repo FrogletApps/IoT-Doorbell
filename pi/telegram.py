@@ -24,9 +24,9 @@ time.sleep(2)
 #Close the photo
 camera.close()
 
-url = "https://api.telegram.org/" + secret.tgBotKey + "/sendPhoto"
+url = "https://api.telegram.org/" + secret.tgBotKey() + "/sendPhoto"
 files = {'photo': open(picturePath, 'rb')}
-data = {'chat_id' : secret.tgChatID}
+data = {'chat_id' : secret.tgChatID()}
 r= requests.post(url, files=files, data=data)
 print(r.status_code, r.reason, r.content)
 
