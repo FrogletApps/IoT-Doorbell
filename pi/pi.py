@@ -8,6 +8,7 @@ import os
 import requests
 
 sense = SenseHat()
+sense.set_rotation(270) #Make the image the right way up for being mounted on a door
 
 picturePath = '/home/pi/image.jpg'
 
