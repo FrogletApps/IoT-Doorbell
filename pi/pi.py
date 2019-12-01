@@ -123,47 +123,53 @@ N,N,N,W,W,N,R,N,
 N,N,N,N,N,N,N,R
 ]
 
-sense.set_pixels(piNoWifi)
-
 ######################################################
 #                   Define Functions                 #
 ######################################################
 
 #A function for sending notifications over Telegram
 def sendNotification(message):
+    try:
+        #response = 
+        requests.get(mPart1 + 'sendMessage' + chatID + '&parse_mode=Markdown&text=' + message)
+        #print (response.json())
+    except:
+        print("No internet connection (message " + message + " failed)")
+        print("Now retry until we get a connection...")
+        testInternet(message, 0)
     print(message)
-    #response = 
-    requests.get(mPart1 + 'sendMessage' + chatID + '&parse_mode=Markdown&text=' + message)
-    #print (response.json())
+
 
 #A function for sending pictures over Telegram
 def sendPicture(picture):
     url = mPart1 + "sendPhoto"
     files = {'photo': open(picturePath, 'rb')}
     data = {'chat_id' : secret.tgChatID()}
-    #response = 
-    requests.post(url, files=files, data=data)
-    #print (response.json())
+    try:
+        #response = 
+        requests.post(url, files=files, data=data)
+        #print (response.json())
+    except:
+        print("No internet connection (picture failed)")
+        print("Now retry until we get a connection...")
+        testInternet(picture, 1)
+    print("Picture sent")
 
 #Connect Bluetooth Low Energy
 def connectBLE():
     sense.set_pixels(piSadFace)
     ubit.connect()
-    sense.set_pixels(piHappyFace)
     sendNotification("I'm connected up and ready to go!")
+    sense.set_pixels(piHappyFace)
 
 #Run button listening code
 def doorbell():
     connectBLE()
-    testInternet()
     while True:
         if ubit.button_a > 0 or ubit.button_b > 0:
-            try:
-                sendNotification("There's someone at the door!")
-                ubit.pixels = mbTick
-                sense.set_pixels(piTick)
-            except:
-                print("No internet connection (message failed)")
+            sendNotification("There's someone at the door!")
+            ubit.pixels = mbTick
+            sense.set_pixels(piTick)
             
             camera = PiCamera()
             #camera.start_preview()
@@ -173,10 +179,8 @@ def doorbell():
             picture = open(picturePath, 'rb')
             #Close the camera
             camera.close()
-            try:
-                sendPicture(picture)
-            except:
-                print("No internet connection (picture failed)")
+
+            sendPicture(picture)
 
             #Wait for 2 seconds
             time.sleep(2)
@@ -185,29 +189,29 @@ def doorbell():
             ubit.pixels = mbHappyFace
             sense.set_pixels(piHappyFace)
 
-
 #def disconnectBLE():
 #    ubit.disconnect()
 #    sense.clear()
 
-#Test the internet connection 
-def testInternet():
+#Test the internet connection
+#Display error if no internet, wait, then repeat the test
+def testInternet(content, contentType):
     try:
         #Test to see if we can connect to the telegram API
         socket.create_connection(("api.telegram.org", 80))
+        sense.clear()
         return True
     except OSError:
         pass
-    noInternet()
-    return False
-
-#Display error if no internet
-def noInternet():
     sense.set_pixels(piNoWifi)
+    time.sleep(5)
+    testInternet(content, contentType)
+
+    return False    
 
 ######################################################
 #                    Call Functions                  #
 ######################################################
 
 #Run the program
-#doorbell()
+doorbell()
