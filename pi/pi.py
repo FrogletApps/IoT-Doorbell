@@ -111,6 +111,20 @@ N,N,G,N,N,N,N,N,
 N,N,N,N,N,N,N,N
 ]
 
+#Pi no internet icon
+piNoWifi = [
+N,N,N,N,N,N,N,N,
+N,N,W,W,W,W,N,N,
+N,W,N,N,N,N,W,N,
+N,N,N,W,W,N,N,N,
+N,N,W,N,N,W,N,N,
+N,N,N,N,N,N,N,N,
+N,N,N,W,W,N,N,N,
+N,N,N,N,N,N,N,N
+]
+
+sense.set_pixels(piNoWifi)
+
 ######################################################
 #                   Define Functions                 #
 ######################################################
@@ -196,4 +210,4 @@ def noInternet():
 ######################################################
 
 #Run the program
-doorbell()
+#doorbell()
