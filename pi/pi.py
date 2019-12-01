@@ -129,7 +129,7 @@ R,N,N,B,N,N,N,N,
 N,R,N,B,B,N,N,N,
 N,B,R,B,N,B,N,N,
 N,N,B,B,B,N,N,N,
-N,N,B,B,B,N,N,N,
+N,N,B,B,R,N,N,N,
 N,B,N,B,N,B,N,N,
 N,N,N,B,B,N,R,N,
 N,N,N,B,N,N,N,R
