@@ -249,7 +249,7 @@ def exit_handler():
 ######################################################
 
 #Test for code ending
-atexit.register(exit_handler)
+#atexit.register(exit_handler)
 
 #Run the program
 #doorbell()
