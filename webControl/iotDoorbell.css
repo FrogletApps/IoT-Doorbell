@@ -1,0 +1,27 @@
+button {
+    font-family: "Segoe UI", Roboto, Ubuntu, sans-serif;
+ text-align: center;
+ font-size: 0.75em;
+
+ margin-left:auto;
+ margin-right:auto;
+ margin:4px;
+ border-radius: 20px;
+ color: #ffffff;
+ background: #068000;
+ /*top right bottom left*/
+ padding: 10px 20px 0px 20px;
+ border: 0px;
+ width: 150px;
+  cursor: pointer;
+}
+
+button:hover {
+ background: #02b817;
+}
+
+.buttonHolder{
+ text-align: center;
+ /*top right bottom left*/
+ padding: 0px 5% 25px 5%;
+}
