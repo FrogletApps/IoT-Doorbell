@@ -249,5 +249,6 @@ def exit_handler():
 atexit.register(exit_handler)
 
 #Run the program
-doorbell()
+#doorbell()
+sense.display(piNoBT)
 
