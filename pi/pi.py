@@ -1,3 +1,7 @@
+######################################################
+#                   Import Libraries                 #
+######################################################
+
 import time
 from bluezero import microbit
 from sense_hat import SenseHat
@@ -7,6 +11,10 @@ import secret
 import os
 import requests
 
+######################################################
+#                   Define Variables                 #
+######################################################
+
 sense = SenseHat()
 sense.set_rotation(90) #Make the image the right way up for being mounted on a door
 
@@ -15,6 +23,95 @@ picturePath = '/home/pi/image.jpg'
 #Need to add this string before message text
 mPart1 = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/'
 chatID = '?chat_id=' + secret.tgChatID()
+
+ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
+                         device_addr='E6:51:A6:1A:37:5B',
+                         accelerometer_service=False,
+                         button_service=True,
+                         led_service=True,
+                         magnetometer_service=False,
+                         pin_service=False,
+                         temperature_service=False)
+
+#Microbit display arrays
+mbX = [
+    0b10001,
+    0b01010,
+    0b00100,
+    0b01010,
+    0b10001]
+
+#Microbit Bluetooth connected icon
+mbHappyFace = [
+    0b00000,
+    0b01010,
+    0b00000,
+    0b10001,
+    0b01110]
+
+#Microbit Bluetooth disconnected icon
+mbSadFace = [
+    0b00000,
+    0b01010,
+    0b00000,
+    0b01110,
+    0b10001]
+
+#Microbit button pressed icon
+mbTick = [
+    0b00001,
+    0b00010,
+    0b10100,
+    0b01000,
+    0b00000]
+
+#Sense HAT display arrays
+#255 is the max value but this is very bright!
+R = [120,0,0]  #Red
+G = [0,120,0]  #Green
+B = [0,0,120]  #Blue - use this for Bluetooth related stuff
+N = [0,0,0]    #Off
+
+
+#Pi Bluetooth connected icon
+piHappyFace = [
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,N,N,N,
+N,N,B,N,N,B,N,N,
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,N,N,N,
+N,B,N,N,N,N,B,N,
+N,N,B,B,B,B,N,N,
+N,N,N,N,N,N,N,N
+]
+
+#Pi Bluetooth disconnected icon
+piSadFace = [
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,N,N,N,
+N,N,B,N,N,B,N,N,
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,N,N,N,
+N,N,B,B,B,B,N,N,
+N,B,N,N,N,N,B,N,
+N,N,N,N,N,N,N,N
+]
+
+#Pi button on the microbit pressed icon
+piTick = [
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,N,N,N,
+N,N,N,N,N,G,G,N,
+N,N,N,N,G,G,N,N,
+N,G,N,G,G,N,N,N,
+N,G,G,G,N,N,N,N,
+N,N,G,N,N,N,N,N,
+N,N,N,N,N,N,N,N
+]
+
+######################################################
+#                   Define Functions                 #
+######################################################
 
 #A function for sending notifications over Telegram
 def sendNotification(message):
@@ -41,11 +138,14 @@ def connectBLE():
 
 def doorbell():
     connectBLE()
-    while looping:
+    while True:
         if ubit.button_a > 0 or ubit.button_b > 0:
-            sendNotification("There's someone at the door!")
-            ubit.pixels = mbTick
-            sense.set_pixels(piTick)
+            try:
+                sendNotification("There's someone at the door!")
+                ubit.pixels = mbTick
+                sense.set_pixels(piTick)
+            except:
+                print("No internet connection (message failed)")
             
             camera = PiCamera()
             #camera.start_preview()
@@ -55,8 +155,10 @@ def doorbell():
             picture = open(picturePath, 'rb')
             #Close the camera
             camera.close()
-
-            sendPicture(picture)
+            try:
+                sendPicture(picture)
+            except:
+                print("No internet connection (picture failed)")
 
             #Wait for 2 seconds
             time.sleep(2)
@@ -70,91 +172,9 @@ def doorbell():
 #    ubit.disconnect()
 #    sense.clear()
 
-ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
-                         device_addr='E6:51:A6:1A:37:5B',
-                         accelerometer_service=False,
-                         button_service=True,
-                         led_service=True,
-                         magnetometer_service=False,
-                         pin_service=False,
-                         temperature_service=False)
-
-looping = True
-
-#Microbit display arrays
-mbX = [
-    0b10001,
-    0b01010,
-    0b00100,
-    0b01010,
-    0b10001]
-
-#Bluetooth connected icon
-mbHappyFace = [
-    0b00000,
-    0b01010,
-    0b00000,
-    0b10001,
-    0b01110]
-
-#Bluetooth disconnected icon
-mbSadFace = [
-    0b00000,
-    0b01010,
-    0b00000,
-    0b01110,
-    0b10001]
-
-#
-mbTick = [
-    0b00001,
-    0b00010,
-    0b10100,
-    0b01000,
-    0b00000]
-
-#Sense HAT display arrays
-#255 is the max value but this is very bright!
-R = [120,0,0]  #Red
-G = [0,120,0]  #Green
-B = [0,0,120]  #Blue - use this for Bluetooth related stuff
-N = [0,0,0]    #Off
-
-
-#Currently used as Bluetooth connected icon
-piHappyFace = [
-N,N,N,N,N,N,N,N,
-N,N,N,N,N,N,N,N,
-N,N,B,N,N,B,N,N,
-N,N,N,N,N,N,N,N,
-N,N,N,N,N,N,N,N,
-N,B,N,N,N,N,B,N,
-N,N,B,B,B,B,N,N,
-N,N,N,N,N,N,N,N
-]
-
-#Currently used as Bluetooth disconnected icon
-piSadFace = [
-N,N,N,N,N,N,N,N,
-N,N,N,N,N,N,N,N,
-N,N,B,N,N,B,N,N,
-N,N,N,N,N,N,N,N,
-N,N,N,N,N,N,N,N,
-N,N,B,B,B,B,N,N,
-N,B,N,N,N,N,B,N,
-N,N,N,N,N,N,N,N
-]
-
-piTick = [
-N,N,N,N,N,N,N,N,
-N,N,N,N,N,N,N,N,
-N,N,N,N,N,G,G,N,
-N,N,N,N,G,G,N,N,
-N,G,N,G,G,N,N,N,
-N,G,G,G,N,N,N,N,
-N,N,G,N,N,N,N,N,
-N,N,N,N,N,N,N,N
-]
+######################################################
+#                    Call Functions                  #
+######################################################
 
 #Run the program
 doorbell()
