@@ -17,6 +17,9 @@ import time
 #                   Define Variables                 #
 ######################################################
 
+#Check to see if this script is running
+open("/tmp/doorbellRunning", "w")
+
 sense = SenseHat()
 sense.set_rotation(90) #Make the image the right way up for being mounted on a door
 
@@ -215,6 +218,7 @@ def exit_handler():
     print('Quitting pi.py')
     sense.set_pixels(piSadFace)
     ubit.pixels = mbSadFace
+    os.remove("/tmp/doorbellRunning") 
 
 ######################################################
 #                    Call Functions                  #
