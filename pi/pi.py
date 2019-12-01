@@ -253,5 +253,5 @@ atexit.register(exit_handler)
 
 #Run the program
 #doorbell()
-sense.display(piNoBT)
+sense.set_pixels(piNoBT)
 
