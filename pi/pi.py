@@ -116,11 +116,11 @@ piNoWifi = [
 R,N,N,N,N,N,N,N,
 N,R,W,W,W,W,N,N,
 N,W,R,N,N,N,W,N,
-W,N,N,R,W,N,N,W,
+N,N,N,W,W,N,N,W,
 N,N,W,N,R,W,N,N,
-N,W,N,N,N,R,W,N,
+N,N,N,N,N,R,N,N,
 N,N,N,W,W,N,R,N,
-N,N,N,N,N,N,N,R
+N,N,N,W,W,N,N,R
 ]
 
 sense.set_pixels(piNoWifi)
