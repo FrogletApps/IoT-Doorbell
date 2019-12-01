@@ -248,10 +248,8 @@ def exit_handler():
 #                    Call Functions                  #
 ######################################################
 
-#Test for code ending
-#atexit.register(exit_handler)
+#Check for the script ending
+atexit.register(exit_handler)
 
 #Run the program
-#doorbell()
-sense.set_pixels(piNoBT)
-
+doorbell()
