@@ -12,7 +12,7 @@ button {
     width: 150px;
 
     color: #ffffff;
-    background: #234099;
+    background: #336533;
 
     /*top right bottom left*/
     padding: 10px 20px 0px 20px;
@@ -21,7 +21,7 @@ button {
 }
 
 button:hover {
-    background: #4c5f99;
+    background: #448744;
 }
 
 .buttonHolder{
