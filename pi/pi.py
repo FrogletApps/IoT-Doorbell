@@ -45,7 +45,8 @@ mbHappyFace = [
     0b01010,
     0b00000,
     0b10001,
-    0b01110]
+    0b01110
+]
 
 #Microbit Bluetooth disconnected icon
 mbSadFace = [
@@ -53,7 +54,8 @@ mbSadFace = [
     0b01010,
     0b00000,
     0b01110,
-    0b10001]
+    0b10001
+]
 
 #Microbit button pressed icon
 mbTick = [
@@ -61,7 +63,8 @@ mbTick = [
     0b00010,
     0b10100,
     0b01000,
-    0b00000]
+    0b00000
+]
 
 #Sense HAT/Pi display arrays
 #255 is the max value but this is very bright!
