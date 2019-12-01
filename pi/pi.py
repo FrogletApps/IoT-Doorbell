@@ -6,6 +6,7 @@ from bluezero import microbit
 from picamera import PiCamera
 from sense_hat import SenseHat
 
+import atexit
 import os
 import requests
 import secret
@@ -207,11 +208,20 @@ def testInternet(content, contentType):
     time.sleep(5)
     testInternet(content, contentType)
 
-    return False    
+    return False
+
+
+def exit_handler():
+    print('Quitting pi.py')
+    sense.set_pixels(piSadFace)
 
 ######################################################
 #                    Call Functions                  #
 ######################################################
 
+#Test for code ending
+atexit.register(exit_handler)
+
 #Run the program
 doorbell()
+
