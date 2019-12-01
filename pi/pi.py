@@ -2,14 +2,15 @@
 #                   Import Libraries                 #
 ######################################################
 
-import time
 from bluezero import microbit
-from sense_hat import SenseHat
 from picamera import PiCamera
+from sense_hat import SenseHat
 
-import secret
 import os
 import requests
+import secret
+import socket
+import time
 
 ######################################################
 #                   Define Variables                 #
@@ -67,10 +68,11 @@ mbTick = [
 
 #Sense HAT display arrays
 #255 is the max value but this is very bright!
-R = [120,0,0]  #Red
-G = [0,120,0]  #Green
-B = [0,0,120]  #Blue - use this for Bluetooth related stuff
-N = [0,0,0]    #Off
+R = [120,0,0]       #Red
+G = [0,120,0]       #Green
+B = [0,0,120]       #Blue - use this for Bluetooth related stuff
+W = [120,120,120]   #White - use this for WiFi related stuff
+N = [0,0,0]         #Off
 
 
 #Pi Bluetooth connected icon
@@ -129,15 +131,17 @@ def sendPicture(picture):
     requests.post(url, files=files, data=data)
     #print (response.json())
 
-#
+#Connect Bluetooth Low Energy
 def connectBLE():
     sense.set_pixels(piSadFace)
     ubit.connect()
     sense.set_pixels(piHappyFace)
     sendNotification("I'm connected up and ready to go!")
 
+#Run button listening code
 def doorbell():
     connectBLE()
+    testInternet()
     while True:
         if ubit.button_a > 0 or ubit.button_b > 0:
             try:
@@ -171,6 +175,21 @@ def doorbell():
 #def disconnectBLE():
 #    ubit.disconnect()
 #    sense.clear()
+
+#Test the internet connection 
+def testInternet():
+    try:
+        #Test to see if we can connect to the telegram API
+        socket.create_connection(("api.telegram.org", 80))
+        return True
+    except OSError:
+        pass
+    noInternet()
+    return False
+
+#Display error if no internet
+def noInternet():
+    sense.set_pixels(piNoWifi)
 
 ######################################################
 #                    Call Functions                  #
