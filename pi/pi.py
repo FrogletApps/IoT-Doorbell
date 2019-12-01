@@ -17,7 +17,7 @@ import time
 #                   Define Variables                 #
 ######################################################
 
-#Check to see if this script is running
+#Set a flag file so we can tell the script is still running
 open("/tmp/doorbellRunning", "w")
 
 sense = SenseHat()
@@ -39,13 +39,6 @@ ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          temperature_service=False)
 
 #Microbit display arrays
-mbX = [
-    0b10001,
-    0b01010,
-    0b00100,
-    0b01010,
-    0b10001]
-
 #Microbit Bluetooth connected icon
 mbHappyFace = [
     0b00000,
@@ -70,7 +63,7 @@ mbTick = [
     0b01000,
     0b00000]
 
-#Sense HAT display arrays
+#Sense HAT/Pi display arrays
 #255 is the max value but this is very bright!
 R = [120,0,0]       #Red
 G = [0,120,0]       #Green
@@ -79,7 +72,7 @@ W = [120,120,120]   #White - use this for WiFi related stuff
 N = [0,0,0]         #Off
 
 
-#Pi Bluetooth connected icon
+#Pi happy icon (all connected)
 piHappyFace = [
 N,N,N,N,N,N,N,N,
 N,N,N,N,N,N,N,N,
@@ -91,7 +84,7 @@ N,N,B,B,B,B,N,N,
 N,N,N,N,N,N,N,N
 ]
 
-#Pi Bluetooth disconnected icon
+#Pi sad icon (disconnected - script terminated)
 piSadFace = [
 N,N,N,N,N,N,N,N,
 N,N,N,N,N,N,N,N,
@@ -127,6 +120,18 @@ N,N,N,W,W,N,R,N,
 N,N,N,N,N,N,N,R
 ]
 
+#Pi no bluetooth icon
+piNoBT = [
+N,N,N,B,N,N,N,N,
+N,N,N,B,B,N,N,N,
+N,B,N,B,N,B,N,N,
+N,N,B,B,B,N,N,N,
+N,N,B,B,N,B,N,N,
+N,B,N,B,B,N,N,N,
+N,N,N,B,N,N,N,N,
+N,N,N,N,N,N,N,N
+]
+
 ######################################################
 #                   Define Functions                 #
 ######################################################
@@ -159,9 +164,29 @@ def sendPicture(picture):
         testInternet(picture, 1)
     print("Picture sent")
 
+#Set Pi to show no WiFi, Microbit is sad
+def noWiFiDisplay():
+    sense.set_pixels(piNoWifi)
+    ubit.pixels = mbSadFace
+
+#Set Microbit and Pi to display happy faces
+def happyDisplay():
+    sense.set_pixels(piHappyFace)
+    ubit.pixels = mbHappyFace
+
+#Set both to display sad faces
+def sadDisplay():
+    sense.set_pixels(piSadFace)
+    ubit.pixels = mbSadFace
+
+#Set Microbit and Pi to display a tick (message sent)
+def allTick():
+    sense.set_pixels(piTick)
+    ubit.pixels = mbTick
+
 #Connect Bluetooth Low Energy
 def connectBLE():
-    sense.set_pixels(piSadFace)
+    sense.set_pixels(piNoBT)
     ubit.connect()
     sendNotification("I'm connected up and ready to go!")
     sense.set_pixels(piHappyFace)
@@ -172,8 +197,7 @@ def doorbell():
     while True:
         if ubit.button_a > 0 or ubit.button_b > 0:
             sendNotification("There's someone at the door!")
-            ubit.pixels = mbTick
-            sense.set_pixels(piTick)
+            allTick()
             
             camera = PiCamera()
             #camera.start_preview()
@@ -190,8 +214,7 @@ def doorbell():
             time.sleep(2)
 
             #Go back to waiting state
-            ubit.pixels = mbHappyFace
-            sense.set_pixels(piHappyFace)
+            happyDisplay()
 
 #def disconnectBLE():
 #    ubit.disconnect()
@@ -213,11 +236,9 @@ def testInternet(content, contentType):
 
     return False
 
-
 def exit_handler():
     print('Quitting pi.py')
-    sense.set_pixels(piSadFace)
-    ubit.pixels = mbSadFace
+    sadDisplay()
     os.remove("/tmp/doorbellRunning") 
 
 ######################################################
