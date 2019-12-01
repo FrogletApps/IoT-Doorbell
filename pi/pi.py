@@ -18,6 +18,7 @@ chatID = '?chat_id=' + secret.tgChatID()
 
 #A function for sending notifications over Telegram
 def sendNotification(message):
+    print(message)
     #response = 
     requests.get(mPart1 + 'sendMessage' + chatID + '&parse_mode=Markdown&text=' + message)
     #print (response.json())
@@ -30,6 +31,44 @@ def sendPicture(picture):
     #response = 
     requests.post(url, files=files, data=data)
     #print (response.json())
+
+#
+def connectBLE():
+    sense.set_pixels(piSadFace)
+    ubit.connect()
+    sense.set_pixels(piHappyFace)
+    sendNotification("I'm connected up and ready to go!")
+
+def doorbell():
+    connectBLE()
+    while looping:
+        if ubit.button_a > 0 or ubit.button_b > 0:
+            sendNotification("There's someone at the door!")
+            ubit.pixels = mbTick
+            sense.set_pixels(piTick)
+            
+            camera = PiCamera()
+            #camera.start_preview()
+            #time.sleep(1)
+            camera.capture(picturePath)
+            #camera.stop_preview()
+            picture = open(picturePath, 'rb')
+            #Close the camera
+            camera.close()
+
+            sendPicture(picture)
+
+            #Wait for 2 seconds
+            time.sleep(2)
+
+            #Go back to waiting state
+            ubit.pixels = mbHappyFace
+            sense.set_pixels(piHappyFace)
+
+
+#def disconnectBLE():
+#    ubit.disconnect()
+#    sense.clear()
 
 ubit = microbit.Microbit(adapter_addr='B8:27:EB:0B:AA:BE',
                          device_addr='E6:51:A6:1A:37:5B',
@@ -50,7 +89,7 @@ mbX = [
     0b01010,
     0b10001]
 
-#Currently used as Bluetooth connected icon
+#Bluetooth connected icon
 mbHappyFace = [
     0b00000,
     0b01010,
@@ -58,7 +97,7 @@ mbHappyFace = [
     0b10001,
     0b01110]
 
-#Currently used as Bluetooth disconnected icon
+#Bluetooth disconnected icon
 mbSadFace = [
     0b00000,
     0b01010,
@@ -66,33 +105,13 @@ mbSadFace = [
     0b01110,
     0b10001]
 
+#
 mbTick = [
     0b00001,
     0b00010,
     0b10100,
     0b01000,
     0b00000]
-
-mbBellLeft = [
-    0b00100,
-    0b01100,
-    0b11100,
-    0b01100,
-    0b10100]
-
-mbBellCentre = [
-    0b00100,
-    0b01110,
-    0b01110,
-    0b11111,
-    0b00100]
-
-mbBellRight = [
-    0b00100,
-    0b01110,
-    0b00111,
-    0b00110,
-    0b00101]
 
 #Sense HAT display arrays
 #255 is the max value but this is very bright!
@@ -137,39 +156,5 @@ N,N,G,N,N,N,N,N,
 N,N,N,N,N,N,N,N
 ]
 
-sense.set_pixels(piSadFace)
-ubit.connect()
-sense.set_pixels(piHappyFace)
-sendNotification("I'm connected up and ready to go!")
-print("I'm connected up and ready to go!")
-
-while looping:
-    if ubit.button_a > 0 and ubit.button_b > 0:
-        looping = False
-    elif ubit.button_a > 0 or ubit.button_b > 0:
-        mode = 1
-        ubit.pixels = mbTick
-        sense.set_pixels(piTick)
-        print("There's someone at the door!")
-        sendNotification("There's someone at the door!")
-
-        camera = PiCamera()
-        #camera.start_preview()
-        #time.sleep(1)
-        camera.capture(picturePath)
-        #camera.stop_preview()
-        picture = open(picturePath, 'rb')
-        #Close the camera
-        camera.close()
-
-        sendPicture(picture)
-
-        #Wait for 2 seconds
-        time.sleep(2)
-
-        #Go back to waiting state
-        ubit.pixels = mbHappyFace
-        sense.set_pixels(piHappyFace)
-
-ubit.disconnect()
-sense.clear()
+#Run the program
+doorbell()
