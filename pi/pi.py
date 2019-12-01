@@ -214,6 +214,7 @@ def testInternet(content, contentType):
 def exit_handler():
     print('Quitting pi.py')
     sense.set_pixels(piSadFace)
+    ubit.pixels = mbSadFace
 
 ######################################################
 #                    Call Functions                  #
