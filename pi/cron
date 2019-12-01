@@ -1,0 +1,4 @@
+#Put these in your cron jobs by running crontab -e
+
+@reboot rm /tmp/doorbellRunning
+* * * * * /home/pi/Git/iot-doorbell-pi/pi/runPiServer.sh
