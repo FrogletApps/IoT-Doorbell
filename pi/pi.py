@@ -98,7 +98,7 @@ mbBellRight = [
 #255 is the max value but this is very bright!
 R = [120,0,0]  #Red
 G = [0,120,0]  #Green
-B = [0,0,255]  #Blue - use this for Bluetooth related stuff
+B = [0,0,120]  #Blue - use this for Bluetooth related stuff
 N = [0,0,0]    #Off
 
 
