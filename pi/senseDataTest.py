@@ -1,5 +1,6 @@
 from sense_hat import SenseHat
 from datetime import datetime
+import time
 
 sense = SenseHat()
 
@@ -23,3 +24,4 @@ def get_sense_data():
 
 while True:
     get_sense_data()
+    time.sleep(1)
