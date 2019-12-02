@@ -168,11 +168,6 @@ def sendPicture(picture):
     print("Picture sent")
 
 #Set Pi to show no WiFi, Microbit is sad
-def noBTDisplay():
-    sense.set_pixels(piNoBT)
-    ubit.pixels = mbSadFace
-
-#Set Pi to show no WiFi, Microbit is sad
 def noWiFiDisplay():
     sense.set_pixels(piNoWifi)
     ubit.pixels = mbSadFace
@@ -210,9 +205,10 @@ def doorbell():
             buttonB = ubit.button_b
         except:
             #If there's some error setting values then attempt to reconnect
-            print("Problem reading value, attempting to reconnect")
+            print("Problem reading button, attempting to reconnect")
             connectBLE(False)
-            
+            print("I fixed it!")
+
         if buttonA > 0 or buttonB > 0:
             sendNotification("There's someone at the door!")
             allTick()
@@ -254,7 +250,7 @@ def testInternet(content, contentType):
         return True
     except OSError:
         pass
-    sense.set_pixels(piNoWifi)
+    noWiFiDisplay()
     time.sleep(5)
     testInternet(content, contentType)
 
