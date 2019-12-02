@@ -1,7 +1,7 @@
 from sense_hat import SenseHat
 from datetime import datetime
 
-sense = SenseHat
+sense = SenseHat()
 
 def get_sense_data():
     orientation = sense.get_orientation()
