@@ -194,7 +194,7 @@ def connectBLE(notification):
     ubit.connect()
     if notification:
         sendNotification("I'm connected up and ready to go!")
-    sense.set_pixels(piHappyFace)
+    happyDisplay()
 
 #Run button listening code
 def doorbell():
