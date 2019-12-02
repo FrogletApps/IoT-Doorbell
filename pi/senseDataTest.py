@@ -10,7 +10,7 @@ def get_sense_data():
     print(orientation["yaw"])
     print(orientation["pitch"])
     print(orientation["roll"])
-    gyro = sense.get_orientation()
+    gyro = sense.get_gyroscope()
     print("Gyro")
     print(gyro["yaw"])
     print(gyro["pitch"])
