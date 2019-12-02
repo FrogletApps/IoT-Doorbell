@@ -168,6 +168,11 @@ def sendPicture(picture):
     print("Picture sent")
 
 #Set Pi to show no WiFi, Microbit is sad
+def noBTDisplay():
+    sense.set_pixels(piNoBT)
+    ubit.pixels = mbSadFace
+
+#Set Pi to show no WiFi, Microbit is sad
 def noWiFiDisplay():
     sense.set_pixels(piNoWifi)
     ubit.pixels = mbSadFace
@@ -188,17 +193,27 @@ def allTick():
     ubit.pixels = mbTick
 
 #Connect Bluetooth Low Energy
-def connectBLE():
+#notification false means no notification
+def connectBLE(notification):
     sense.set_pixels(piNoBT)
     ubit.connect()
-    sendNotification("I'm connected up and ready to go!")
+    if notification:
+        sendNotification("I'm connected up and ready to go!")
     sense.set_pixels(piHappyFace)
 
 #Run button listening code
 def doorbell():
-    connectBLE()
+    connectBLE(True)
     while True:
-        if ubit.button_a > 0 or ubit.button_b > 0:
+        try:
+            buttonA = ubit.button_a
+            buttonB = ubit.button_b
+        except:
+            #If there's some error setting values then attempt to reconnect
+            print("Problem reading value, attempting to reconnect")
+            connectBLE(False)
+            
+        if buttonA > 0 or buttonB > 0:
             sendNotification("There's someone at the door!")
             allTick()
             
@@ -225,11 +240,17 @@ def doorbell():
 
 #Test the internet connection
 #Display error if no internet, wait, then repeat the test
+#Once there is a connection then resend the 
+#contentType 0 is message, 1 is picture
 def testInternet(content, contentType):
     try:
         #Test to see if we can connect to the telegram API
         socket.create_connection(("api.telegram.org", 80))
         sense.clear()
+        if contentType == 0:
+            sendNotification(content)
+        else:
+            sendPicture(content)
         return True
     except OSError:
         pass
