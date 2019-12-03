@@ -15,7 +15,7 @@
 
 	<?php
 		$dirname = "DoorbellPics/";
-		$images = glob($dirname . "*.jpg");
+		$images = array_reverse(glob($dirname . "*.jpg"));
 		foreach($images as $image) {
 			echo '<p>'.$image.'</p>';
 			echo '<img src="'.$image.'" />';
