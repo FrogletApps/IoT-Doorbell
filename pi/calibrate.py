@@ -13,7 +13,23 @@ def calibrate():
     return data
     
 def averageData(allData):
-    print(allData)
+    yawTotal = 0
+    pitchTotal = 0
+    rollTotal = 0
+    for group in allData:
+        print(group)
+        yawTotal += group[0]
+        pitchTotal += group[1]
+        pitchTotal += group[2]
+
+    arrayLength = len(allData)
+    yawAvg = yawTotal/arrayLength
+    pitchAvg = pitchTotal/arrayLength
+    rollAvg = rollTotal/arrayLength
+
+    return [yawAvg, pitchAvg, rollAvg]
+
+
 
 def writeData():
     with open ('calibate.csv', 'w', newline='') as file:
@@ -27,7 +43,7 @@ for x in range(0, 10):
     allData.append(calibrate())
     time.sleep(1)
 
-averageData(allData)
+print(averageData(allData))
 
 
 
