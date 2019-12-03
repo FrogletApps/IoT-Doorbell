@@ -7,7 +7,9 @@
 	</head>
 	
 	<body>
-		<h2>Admin Controls</h2>
+		<div id="topBar">
+			<h1>Doorbell Admin Controls</h1>
+		</div>
 		
 		<div class="buttonHolder">
 			<button onclick ="window.location = 'Tasks/reboot.php';"<p>Reboot</p></button>
@@ -15,7 +17,6 @@
 			<button onclick ="window.location = 'Tasks/update.php';"<p>Update</p></button>
 		</div>
 
-	
 		<!--This is external code to print the client's IP address-->
 		<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 			
