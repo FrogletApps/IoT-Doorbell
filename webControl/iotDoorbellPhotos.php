@@ -17,9 +17,9 @@
 		$dirname = "DoorbellPics/";
 		$images = glob($dirname . "*.jpg");
 		foreach($images as $image) {
-			//echo '<p>'.$image.'</p>'
+			echo '<p>'.$image.'</p>';
 			echo '<img src="'.$image.'" />';
-			echo '<br><br>'
+			echo '<br><br>';
 		}
 	?>
 	
