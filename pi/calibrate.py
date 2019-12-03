@@ -58,6 +58,7 @@ def fixRangeWrap(dataArray):
         for data in dataArray:
             if data < 90:
                 data += 360
+        return dataArray
     else:
         return False
         
