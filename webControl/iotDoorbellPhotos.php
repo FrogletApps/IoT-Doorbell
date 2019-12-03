@@ -11,11 +11,15 @@
 		<h1>IoT Doorbell Photos</h1>
 	</div>
 
+	<br><br>
+
 	<?php
 		$dirname = "DoorbellPics/";
 		$images = glob($dirname . "*.jpg");
 		foreach($images as $image) {
-			echo '<img src="'.$image.'" /><br><br>';
+			echo '<p>'.$image.'</p>'
+			echo '<img src="'.$image.'" />';
+			echo '<br><br>'
 		}
 	?>
 	
