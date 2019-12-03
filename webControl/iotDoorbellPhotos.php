@@ -13,9 +13,11 @@
 
 	<br><br>
 
-	<form method="post">
-		<input type="submit" name="test" value="Take a picture"/>
-	</form>
+	<div class="buttonHolder">
+		<form method="post">
+			<input type="submit" name="test" value="Take a picture"/>
+		</form>
+	</div>
 
 	<?php
 		if(array_key_exists('test',$_POST)){
