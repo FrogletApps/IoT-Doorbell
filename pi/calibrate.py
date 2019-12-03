@@ -10,6 +10,7 @@ def calibrate():
     data.append(orientation["yaw"])
     data.append(orientation["pitch"])
     data.append(orientation["roll"])
+    return data
     
 def averageData(allData):
     print(allData)
@@ -22,6 +23,7 @@ def writeData():
 #Collect 10 data samples of door position/orientation
 allData = []
 for x in range(0, 10):
+    print(x)
     allData.append(calibrate())
     time.sleep(1)
 
