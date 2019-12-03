@@ -43,12 +43,7 @@ img{
 
 /*Position an element in the top left corner*/
 .topcorner{
-	position:absolute;
-	top:0;
-	left:0;
-    font-family: "Segoe UI", Roboto, Ubuntu, sans-serif;
-}
-
-.topcorner a{
-    color: #ffffff; /*Change hyperlink colour*/
+	position: absolute;
+	top: 0;
+    left: 0;
 }
