@@ -24,6 +24,8 @@
 
 		if(array_key_exists('test',$_POST)){
 			testFunction();
+			sleep(1);
+			unset('test')
 		}
 	?>
 
