@@ -1,8 +1,7 @@
 <html>
 	<head>
 		<title>Admin Controls</title>
-		<link rel="shortcut icon" href="favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="/style.css">
+		<link rel="stylesheet" type="text/css" href="/iotDoorbell.css">
 		<meta charset="UTF-8" name = "viewport" content="device-width, initial-scale=1.0">
 	</head>
 	
