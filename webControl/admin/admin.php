@@ -34,6 +34,10 @@
 		</p>
 		<br>
 
-		<div class="topcorner"><a href="/">Home</a></div>
+		<div class="topcorner">
+			<a href="/">
+				<img alt="Back" class="back" src="/back.png">
+			</a>
+		</div>
 	</body>
 </html>

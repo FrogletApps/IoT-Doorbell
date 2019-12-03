@@ -49,6 +49,6 @@ button:hover, input[type=submit]:hover {
 /*Position an element in the top left corner*/
 .topcorner {
 	position: absolute;
-	top: 10px;
-    left: 10px;
+	top: 4px;
+    left: 4px;
 }
