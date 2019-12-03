@@ -12,6 +12,7 @@ def collectData():
     data.append(orientation["yaw"])
     data.append(orientation["pitch"])
     data.append(orientation["roll"])
+    print(data)
     return data
     
 def averageData(allData):
