@@ -18,13 +18,8 @@
 	</form>
 
 	<?php
-		function testFunction(){
-			echo "Your test function on button click is working";
-		}
-
 		if(array_key_exists('test',$_POST)){
-			testFunction();
-			sleep(1);
+			shell_exec('../pi/picture.py')
 			unset($_POST['test']);
 		}
 	?>
