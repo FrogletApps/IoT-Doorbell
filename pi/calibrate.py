@@ -47,9 +47,9 @@ def averageData(allData):
 #Fix data when data has gone up from 360 to 0 or gone down from 0 to 360
 def fixData(dataArray):
     if (min(dataArray) < 90 and max(dataArray) > 270):
-        for data in dataArray:
-            if data < 90:
-                data += 360
+        for i in len(dataArray):
+            if dataArray[i] < 90:
+                dataArray[i] += 360
     return dataArray
         
 
