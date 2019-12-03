@@ -4,14 +4,6 @@ import time
 
 sense = SenseHat()
 
-#Collect 10 data samples of door position/orientation
-allData = []
-for x in range(0, 10):
-    allData.append(calibrate())
-    time.sleep(1)
-
-averageData(allData)
-
 def calibrate():
     data = []
     orientation = sense.get_orientation()
@@ -26,4 +18,14 @@ def writeData():
     with open ('calibate.csv', 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(data)
+
+#Collect 10 data samples of door position/orientation
+allData = []
+for x in range(0, 10):
+    allData.append(calibrate())
+    time.sleep(1)
+
+averageData(allData)
+
+
 
