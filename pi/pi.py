@@ -169,7 +169,7 @@ def sendPicture(picturePath):
 #Get file path for pictures
 def getPicturePath():
     time = datetime.now()
-    return '/home/pi/Git/iot-doorbell-pi/webControl/DoorbellPics/'+ time.strftime("%d%H%M%S") +'.jpg'
+    return '/home/pi/Git/iot-doorbell-pi/webControl/DoorbellPics/'+ time.strftime("%d-%m-%Y %H-%M-%S") +'.jpg'
 
 #Set Pi to show no WiFi, Microbit is sad
 def noWiFiDisplay():
