@@ -1,5 +1,4 @@
-
-.vscode/settings.json
+.htpasswd
 secret.py
-
+.vscode/settings.json
 webControl/DoorbellPics/*.jpg
