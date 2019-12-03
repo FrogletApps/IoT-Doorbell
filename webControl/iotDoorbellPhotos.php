@@ -19,7 +19,7 @@
 
 	<?php
 		if(array_key_exists('test',$_POST)){
-			shell_exec('../pi/picture.py')
+			shell_exec('../pi/picture.py');
 			unset($_POST['test']);
 		}
 	?>
