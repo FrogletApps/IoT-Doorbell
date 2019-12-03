@@ -20,6 +20,10 @@ button, input[type=submit] {
     cursor: pointer;
 }
 
+input[type=submit] {
+    padding: 10px 20px 10px 20px;
+}
+
 button:hover, input[type=submit]:hover {
     background: #448744;
 }
