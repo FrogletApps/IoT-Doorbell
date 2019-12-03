@@ -33,7 +33,7 @@
 		$images = array_reverse(glob($dirname . "*.jpg"));
 		foreach($images as $image) {
 			echo '<p>'.explode("/", $image)[1].'</p>';
-			echo '<img src="'.$image.'" />';
+			echo '<img class="doorbellPics" src="'.$image.'" />';
 			echo '<br><br>';
 		}
 	?>

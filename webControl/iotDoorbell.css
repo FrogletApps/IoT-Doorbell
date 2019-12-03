@@ -28,13 +28,13 @@ button:hover, input[type=submit]:hover {
     background: #448744;
 }
 
-.buttonHolder{
+.buttonHolder {
     text-align: center;
     /*top right bottom left*/
     padding: 0px 5% 25px 5%;
 }
 
-img{
+.doorbellPics {
     display: block;
     margin: auto;
     max-width:50%;
@@ -42,7 +42,7 @@ img{
 }
 
 /*Position an element in the top left corner*/
-.topcorner{
+.topcorner {
 	position: absolute;
 	top: 0;
     left: 0;
