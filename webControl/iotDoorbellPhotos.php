@@ -13,6 +13,22 @@
 
 	<br><br>
 
+	<form method="post">
+		<input type="submit" name="test" value="RUN" /><br/>
+	</form>
+
+	<?php
+		function testFunction(){
+			echo "Your test function on button click is working";
+		}
+
+		if(array_key_exists('test',$_POST)){
+			testFunction();
+		}
+	?>
+
+	<br><br>
+
 	<?php
 		$dirname = "DoorbellPics/";
 		$images = array_reverse(glob($dirname . "*.jpg"));
