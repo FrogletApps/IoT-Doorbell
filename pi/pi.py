@@ -8,6 +8,7 @@ from picamera import PiCamera
 from sense_hat import SenseHat
 
 import atexit
+#import mysql.connector as mariadb
 import os
 import requests
 import secret
