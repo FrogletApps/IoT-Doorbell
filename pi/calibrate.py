@@ -24,6 +24,6 @@ def averageData(allData):
 
 def writeData():
     with open ('calibate.csv', 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(data)
+        writer = csv.writer(file)
+        writer.writerow(data)
 
