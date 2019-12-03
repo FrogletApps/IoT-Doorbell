@@ -20,12 +20,12 @@ def averageData(allData):
         print(group)
         yawTotal += group[0]
         pitchTotal += group[1]
-        pitchTotal += group[2]
+        rollTotal += group[2]
 
     arrayLength = len(allData)
-    yawAvg = yawTotal/arrayLength
-    pitchAvg = pitchTotal/arrayLength
-    rollAvg = rollTotal/arrayLength
+    yawAvg = round(yawTotal/arrayLength, 0)
+    pitchAvg = round(pitchTotal/arrayLength, 0)
+    rollAvg = round(rollTotal/arrayLength, 0)
 
     return [yawAvg, pitchAvg, rollAvg]
 
