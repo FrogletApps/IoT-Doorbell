@@ -1,4 +1,4 @@
-button {
+button, input[type=submit] {
     font-family: "Segoe UI", Roboto, Ubuntu, sans-serif;
     text-align: center;
     font-size: 0.75em;
@@ -20,7 +20,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover, input[type=submit]:hover {
     background: #448744;
 }
 

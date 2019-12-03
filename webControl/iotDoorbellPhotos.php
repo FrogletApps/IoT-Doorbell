@@ -14,7 +14,7 @@
 	<br><br>
 
 	<form method="post">
-		<input type="submit" name="test" value="RUN" /><br/>
+		<input type="submit" name="test" value="Take a picture"/>
 	</form>
 
 	<?php
