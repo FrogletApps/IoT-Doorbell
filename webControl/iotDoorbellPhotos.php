@@ -6,37 +6,42 @@
 		<link rel="stylesheet" type="text/css" href="https://frogletapps.github.io/Assets/FrogletApps.css">
 		<link rel="stylesheet" type="text/css" href="iotDoorbell.css">
 	</head>
+	<body>
+		<div id="topBar">
+			<h1>IoT Doorbell Photos</h1>
+		</div>
 
-	<div id="topBar">
-		<h1>IoT Doorbell Photos</h1>
-	</div>
+		<br><br>
 
-	<br><br>
+		<!--<div class="buttonHolder">
+			<form method="post">
+				<input type="submit" name="test" value="Take a picture"/>
+			</form>
+		</div>
 
-	<!--<div class="buttonHolder">
-		<form method="post">
-			<input type="submit" name="test" value="Take a picture"/>
-		</form>
-	</div>
+		<?php
+			#if(array_key_exists('test',$_POST)){
+			#	shell_exec('../pi/picture.py');
+			#	unset($_POST['test']);
+			#}
+		?>
 
-	<?php
-		#if(array_key_exists('test',$_POST)){
-		#	shell_exec('../pi/picture.py');
-		#	unset($_POST['test']);
-		#}
-	?>
+		<br><br>-->
 
-	<br><br>-->
-
-	<?php
-		$dirname = "DoorbellPics/";
-		$images = array_reverse(glob($dirname . "*.jpg"));
-		foreach($images as $image) {
-			echo '<p>'.explode("/", $image)[1].'</p>';
-			echo '<img class="doorbellPics" src="'.$image.'" />';
-			echo '<br><br>';
-		}
-	?>
-	
-	<div class="topcorner"><a href="iotDoorbell.html">Home</a></div>
+		<?php
+			$dirname = "DoorbellPics/";
+			$images = array_reverse(glob($dirname . "*.jpg"));
+			foreach($images as $image) {
+				echo '<p>'.explode("/", $image)[1].'</p>';
+				echo '<img class="doorbellPics" src="'.$image.'" />';
+				echo '<br><br>';
+			}
+		?>
+		
+		<div class="topcorner">
+			<a href="/">
+				<img alt="Back" class="back" src="/back.png">
+			</a>
+		</div>
+	</body>
 </html>
