@@ -26,23 +26,15 @@ def averageData(allData):
         pitchArray.append(round(group[1], 0))
         rollArray.append(round(group[2], 0))
 
-    #Calculate range (adjusting for overflow/underflow)
-    yawRange = fixRangeWrap(yawArray)
-    if (yawRange == False):
-        yawRange = max(yawArray) - min(yawArray)
-
-    pitchRange = fixRangeWrap(pitchArray)
-    if (pitchRange == False):
-        pitchRange = max(pitchArray) - min(pitchArray)
-
-    rollRange = fixRangeWrap(rollArray)
-    if (rollRange == False):
-        rollRange = max(rollArray) - min(rollArray)
+    #Recalculate arrays (adjusting for overflow/underflow, and assuming no massive fluctuations)
+    yawArray = fixData(yawArray)
+    pitchRange = fixData(pitchArray)
+    rollRange = fixData(rollArray)
 
     #Calculate range
-    #yawRange = max(yawArray) - min(yawArray)
-    #pitchRange = max(pitchArray) - min(pitchArray)
-    #rollRange = max(rollArray) - min(rollArray)
+    yawRange = max(yawArray) - min(yawArray)
+    pitchRange = max(pitchArray) - min(pitchArray)
+    rollRange = max(rollArray) - min(rollArray)
 
     #Calculate average
     arrayLength = len(allData)
@@ -53,14 +45,12 @@ def averageData(allData):
     return [[yawAvg, yawRange], [pitchAvg, pitchRange], [rollAvg, rollRange]]
 
 #Fix data when data has gone up from 360 to 0 or gone down from 0 to 360
-def fixRangeWrap(dataArray):
+def fixData(dataArray):
     if (min(dataArray) < 90 and max(dataArray) > 270):
         for data in dataArray:
             if data < 90:
                 data += 360
-        return dataArray
-    else:
-        return False
+    return dataArray
         
 
 def writeData(data):
