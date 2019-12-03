@@ -11,10 +11,11 @@
 			<h1>Doorbell Admin Controls</h1>
 		</div>
 		
+		<br><br>
+		
 		<div class="buttonHolder">
 			<button onclick ="window.location = 'Tasks/reboot.php';"<p>Reboot</p></button>
 			<button onclick ="window.location = 'Tasks/shutdown.php';"<p>Shutdown</p></button>
-			<button onclick ="window.location = 'Tasks/update.php';"<p>Update</p></button>
 		</div>
 
 		<!--This is external code to print the client's IP address-->
