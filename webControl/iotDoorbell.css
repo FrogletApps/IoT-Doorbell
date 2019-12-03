@@ -24,6 +24,11 @@ input[type=submit] {
     padding: 10px 20px 10px 20px;
 }
 
+.back {
+    height: 50%;
+    width: 50%;
+}
+
 button:hover, input[type=submit]:hover {
     background: #448744;
 }
@@ -37,7 +42,7 @@ button:hover, input[type=submit]:hover {
 .doorbellPics {
     display: block;
     margin: auto;
-    max-width:50%;
+    max-width: 50%;
     height: auto;
 }
 
