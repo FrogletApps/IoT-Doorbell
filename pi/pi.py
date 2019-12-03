@@ -3,6 +3,7 @@
 ######################################################
 
 from bluezero import microbit
+from datetime import datetime
 from picamera import PiCamera
 from sense_hat import SenseHat
 
@@ -22,8 +23,6 @@ open("/tmp/doorbellRunning", "w")
 
 sense = SenseHat()
 sense.set_rotation(90) #Make the image the right way up for being mounted on a door
-
-picturePath = '/home/pi/image.jpg'
 
 #Need to add this string before message text
 mPart1 = 'https://api.telegram.org/bot' + secret.tgBotKey() + '/'
@@ -155,7 +154,7 @@ def sendNotification(message):
 #A function for sending pictures over Telegram
 def sendPicture(picture):
     url = mPart1 + "sendPhoto"
-    files = {'photo': open(picturePath, 'rb')}
+    files = {picture}
     data = {'chat_id' : secret.tgChatID()}
     try:
         #response = 
@@ -166,6 +165,11 @@ def sendPicture(picture):
         print("Now retry until we get a connection...")
         testInternet(picture, 1)
     print("Picture sent")
+
+#Get file path for pictures
+def getPicturePath():
+    time = datetime.now()
+    return '/home/pi/Doorbell'+ time.strftime("%d%H%M%S") +'.jpg'
 
 #Set Pi to show no WiFi, Microbit is sad
 def noWiFiDisplay():
@@ -213,6 +217,7 @@ def doorbell():
             sendNotification("There's someone at the door!")
             allTick()
             
+            picturePath = getPicturePath()
             camera = PiCamera()
             #camera.start_preview()
             #time.sleep(1)
