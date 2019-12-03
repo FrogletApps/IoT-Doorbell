@@ -72,7 +72,7 @@ def calibrate(x):
     allData = []
     for x in range(0, x):
         print(x)
-        allData.append(collectData)
+        allData.append(collectData())
         time.sleep(1)
 
     print(averageData(allData))
