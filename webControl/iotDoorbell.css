@@ -25,8 +25,8 @@ input[type=submit] {
 }
 
 .back {
-    height: 50%;
-    width: 50%;
+    height: 60%;
+    width: 60%;
 }
 
 button:hover, input[type=submit]:hover {
@@ -49,6 +49,6 @@ button:hover, input[type=submit]:hover {
 /*Position an element in the top left corner*/
 .topcorner {
 	position: absolute;
-	top: 0;
-    left: 0;
+	top: 10px;
+    left: 10px;
 }
