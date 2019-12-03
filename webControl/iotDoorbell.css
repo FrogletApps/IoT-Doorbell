@@ -35,4 +35,11 @@ img{
     margin: auto;
     max-width:50%;
     height: auto;
-}	
+}
+
+.topcorner{
+	position:absolute;
+	top:0;
+	left:0;
+	font-family: "Segoe UI", Roboto, Ubuntu, sans-serif;
+}
