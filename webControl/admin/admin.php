@@ -1,14 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-gb">
+
 	<head>
-		<title>Admin Controls</title>
+		<title>Pi Spy Admin</title>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="icon" href="https://frogletapps.github.io/Assets/favicon.ico" type="image/ico">
 		<link rel="stylesheet" type="text/css" href="https://frogletapps.github.io/Assets/FrogletApps.css">
 		<link rel="stylesheet" type="text/css" href="/iotDoorbell.css">
-		<meta charset="UTF-8" name = "viewport" content="device-width, initial-scale=1.0">
 	</head>
 	
 	<body>
 		<div id="topBar">
-			<h1>Doorbell Admin Controls</h1>
+			<h1>Pi Spy Admin</h1>
 		</div>
 		
 		<br><br>
