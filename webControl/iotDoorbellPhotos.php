@@ -12,7 +12,7 @@
 	</div>
 
 	<?php
-		$dirname = "/home/pi/Doorbell";
+		$dirname = "/home/pi/Doorbell/";
 		$images = glob($dirname . "*.jpg");
 		foreach($images as $image) {
 			echo '<img src="'.$image.'" /><br><br>';
