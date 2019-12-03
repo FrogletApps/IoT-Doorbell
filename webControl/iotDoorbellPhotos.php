@@ -13,20 +13,20 @@
 
 	<br><br>
 
-	<div class="buttonHolder">
+	<!--<div class="buttonHolder">
 		<form method="post">
 			<input type="submit" name="test" value="Take a picture"/>
 		</form>
 	</div>
 
 	<?php
-		if(array_key_exists('test',$_POST)){
-			shell_exec('../pi/picture.py');
-			unset($_POST['test']);
-		}
+		#if(array_key_exists('test',$_POST)){
+		#	shell_exec('../pi/picture.py');
+		#	unset($_POST['test']);
+		#}
 	?>
 
-	<br><br>
+	<br><br>-->
 
 	<?php
 		$dirname = "DoorbellPics/";
