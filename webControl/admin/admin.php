@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>Admin Controls</title>
+		<link rel="stylesheet" type="text/css" href="https://frogletapps.github.io/Assets/FrogletApps.css">
 		<link rel="stylesheet" type="text/css" href="/iotDoorbell.css">
 		<meta charset="UTF-8" name = "viewport" content="device-width, initial-scale=1.0">
 	</head>
