@@ -152,9 +152,9 @@ def sendNotification(message):
 
 
 #A function for sending pictures over Telegram
-def sendPicture(picture):
+def sendPicture(picturePath):
     url = mPart1 + "sendPhoto"
-    files = {picture}
+    files = {'photo': open(picturePath, 'rb')}
     data = {'chat_id' : secret.tgChatID()}
     try:
         #response = 
@@ -163,7 +163,7 @@ def sendPicture(picture):
     except:
         print("No internet connection (picture failed)")
         print("Now retry until we get a connection...")
-        testInternet(picture, 1)
+        testInternet(picturePath, 1)
     print("Picture sent")
 
 #Get file path for pictures
@@ -223,11 +223,10 @@ def doorbell():
             #time.sleep(1)
             camera.capture(picturePath)
             #camera.stop_preview()
-            picture = open(picturePath, 'rb')
             #Close the camera
             camera.close()
 
-            sendPicture(picture)
+            sendPicture(picturePath)
 
             #Wait for 2 seconds
             time.sleep(2)
