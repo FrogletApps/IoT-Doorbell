@@ -14,6 +14,12 @@
 			<h1>Pi Spy Images</h1>
 		</div>
 
+		<div class="topcorner">
+			<a href="/">
+				<img alt="Back" class="back" src="/back.png">
+			</a>
+		</div>
+
 		<br><br>
 
 		<!--<div class="buttonHolder">
@@ -40,11 +46,5 @@
 				echo '<br><br>';
 			}
 		?>
-		
-		<div class="topcorner">
-			<a href="/">
-				<img alt="Back" class="back" src="/back.png">
-			</a>
-		</div>
 	</body>
 </html>
