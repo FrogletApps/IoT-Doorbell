@@ -263,8 +263,14 @@ def testInternet(content, contentType):
 
 def exit_handler():
     print('Quitting pi.py')
-    sadDisplay()
-    os.remove("/tmp/doorbellRunning") 
+    try:
+        os.remove("/tmp/doorbellRunning")
+    except:
+        pass
+    try:
+        sadDisplay()
+    except:
+        pass
 
 ######################################################
 #                    Call Functions                  #
