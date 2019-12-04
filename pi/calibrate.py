@@ -1,10 +1,19 @@
-from csv import writer
 from sense_hat import SenseHat
 
+import argparse
 import csv
 import time
 
 sense = SenseHat()
+
+#Parse command line arguments
+#doorPos=True is open, doorPos=False is closed
+parser = argparse.ArgumentParser()
+parser.add_argument("doorPos")
+args = parser.parse_args()
+
+#Set argument to variable
+doorPosition = bool(args.doorPos)
 
 def collectData():
     data = []
@@ -55,10 +64,10 @@ def fixData(dataArray):
         
 
 def writeData(data):
-    with open ('calibate.csv', 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(data)
-
+    with open ('calibate.csv', mode='r') as file:
+        readFile = csv.DictReader(file)
+        for row in readFile:
+            
 #Collect x data samples of door position/orientation
 def calibrate(x):
     allData = []
