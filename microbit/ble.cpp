@@ -1,3 +1,5 @@
+//This is some test code and is not used in the final project
+
 /* See 
  * http://lancaster-university.github.io/microbit-docs/advanced/ 
  * for docs about using the micro:bit library
